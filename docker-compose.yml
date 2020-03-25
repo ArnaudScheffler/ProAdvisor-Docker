@@ -1,0 +1,30 @@
+version: "2"
+
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      "MYSQL_ROOT_PASSWORD": "HdntL3T8Wnsuasp6"
+      "MYSQL_DATABASE": "projetsynthese"
+    ports:
+      - "33062:3306"
+    volumes:
+      - db:/var/lib/mysql
+      # Création des différentes tables
+      - ./db/script_create_db.sql:/docker-entrypoint-initdb.d/script_create_db.sql
+    restart: unless-stopped
+
+  api:
+    build: ProAdvisor/api
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+
+  front:
+    build: ProAdvisor-Angular
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+
+volumes:
+  db:

@@ -1,0 +1,6 @@
+ProAdvisor/
+ProAdvisor-Angular/
+
+files/*
+!files/Coordonnees.txt
+!files/TypesEntreprises.txt
